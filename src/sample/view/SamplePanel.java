@@ -12,5 +12,27 @@ public class SamplePanel extends JPanel //frame holds a panel
 		super();//bc extends
 		
 		this.appController = appController;
+		setupPanel();
+		setupLayout();
+		setupListeners();
+	
 	}
+	
+	
+	private void setupPanel()
+	{
+		
+	}
+	
+	private void setupLayout()
+	{
+		
+	}
+	
+	private void setupListeners()
+	{
+		
+	}
+	
+	
 }
