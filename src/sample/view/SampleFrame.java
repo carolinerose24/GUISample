@@ -20,11 +20,11 @@ public class SampleFrame extends JFrame
 	}
 	
 	private void setupFrame() //helper method
-	{
+	{//app name would go in here
 		this.setContentPane(appPanel);
 		this.setSize(1000, 500);
 		this.setTitle("MY first GUI App");
 		this.setResizable(false);
-		this.setVisible(true);
+		this.setVisible(true); //will close w/o this- always needs to be the last line
 	}
 }
