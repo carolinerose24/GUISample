@@ -6,6 +6,7 @@ import javax.swing.*;// .* gives us everything in that folder
 import java.awt.Color;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class SamplePanel extends JPanel //frame holds a panel
@@ -13,15 +14,17 @@ public class SamplePanel extends JPanel //frame holds a panel
 	private GUIController appController;
 	
 	private JButton colorButton;
+	private JButton THISbutton;
 	private JLabel textLabel;
+	
+	private SpringLayout appLayout;
 	
 	public SamplePanel (GUIController appController)
 	{
 		super();//bc extends
 		
 		this.appController = appController;
-		colorButton = new JButton("Click to change the color");//words on button
-		textLabel = new JLabel("This is a color app");
+		appLayout = new SpringLayout();
 		
 		setupPanel();
 		setupLayout();
@@ -33,12 +36,30 @@ public class SamplePanel extends JPanel //frame holds a panel
 	private void setupPanel()
 	{
 		this.setBackground(Color.lightGray);
+		textLabel = new JLabel("This is a color app");
+		
+
 		this.add(textLabel);
+		colorButton = new JButton("Click to change the color");
+
+		THISbutton = new JButton("This button does NOTHING!");
+		this.add(THISbutton);
+		
 		this.add(colorButton);
+		
+		this.setLayout(appLayout);
 	}
 	
 	private void setupLayout()
 	{
+		appLayout.putConstraint(SpringLayout.NORTH, textLabel, 10, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, textLabel, 20, SpringLayout.WEST, this);
+		
+		appLayout.putConstraint(SpringLayout.NORTH, colorButton, 17, SpringLayout.SOUTH, textLabel);
+		appLayout.putConstraint(SpringLayout.WEST, colorButton, 10, SpringLayout.WEST, this);
+		
+		appLayout.putConstraint(SpringLayout.NORTH, THISbutton, 66, SpringLayout.SOUTH, colorButton);
+		appLayout.putConstraint(SpringLayout.WEST, THISbutton, 92, SpringLayout.WEST, this);
 		
 	}
 	
@@ -52,6 +73,17 @@ public class SamplePanel extends JPanel //frame holds a panel
 				changeBackgroundColor();
 			}
 		});
+		
+		
+		THISbutton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent mouseClick)
+			{
+				sharkMethod();
+			}
+		});
+		
+		
 	}
 	
 	private void changeBackgroundColor()
@@ -63,6 +95,19 @@ public class SamplePanel extends JPanel //frame holds a panel
 		
 		this.setBackground(new Color (red, green, blue));
 		textLabel.setText("Red is " + red + ". Green is " + green + ". Blue is " + blue + ".");
+	}
+	
+	private void sharkMethod()
+	{
+//		ArrayList<String> shark = new ArrayList<String> [5];
+//		for (int i = 0; i < 10; i ++)
+//		{
+//			THISbutton.setText("");
+//		}
+		THISbutton.setText("No more sugar cookies for you Santa, you're gonna eat your words!");
+		
+	//	THISbutton.setBackground(new Color(99,22,33));
+	
 	}
 	
 }
